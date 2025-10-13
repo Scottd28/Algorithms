@@ -1,0 +1,215 @@
+<!DOCTYPE html><html><head>
+      <title>index</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/jliang/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.19/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h3 id="cmpt-306-algorithms">CMPT 306 Algorithms </h3>
+<h4 id="fall-2025">Fall 2025 </h4>
+<hr>
+<h4 id="lab-5---name-searching">Lab 5 - Name Searching </h4>
+<h5 id="how-labs-are-managed-and-grade">How Labs are Managed and Grade </h5>
+<ol>
+<li>
+<p>Select a partner on your own. The rules are you must pair with a new partner each week.</p>
+</li>
+<li>
+<p>Work as a pair to complete the lab. At the end of the lab period, make sure to share all files with each partner.</p>
+</li>
+<li>
+<p>Each partner will submit the lab separately. (Submission instructions are described later in this lab.)</p>
+</li>
+<li>
+<p>If you do not finish the lab during the lab period, you may either get together outside of class to complete it, or complete it on your own. If you choose to complete it on your own, be sure to indicate this in your submission.</p>
+</li>
+</ol>
+<h4 id="code">Code </h4>
+<p>Please download and unpack this tar file:</p>
+<p><a href="./lab5.tar">lab5.tar</a></p>
+<h4 id="personal-name-in-different-cultures">Personal Name in Different Cultures </h4>
+<p>A personal name or full name is the set of names by which an individual is known [1]. In Western culture, nearly all individuals possess at least one given name (also known as a first name), together with a surname (also known as a last name or family name). Many individuals also have a middle name. For example, if a person's first/given name is Jacob, middle name is Mark, and last/sur/family name is Bayes, we can call his name as <code>Jacob Mark Bayes</code> or <code>Bayes, Jacob Mark</code>. There are many different name conventions in other cultures. Here are three examples:</p>
+<ul>
+<li>
+<p>In Arabic culture, Arabic names have historically been based on a long naming system. Most Arabs have a chain of names. This system remains in use throughout the Arab world [2]. An Arabic name is a combination of a person's own name, father's name, grandfather's name, ..., and family/tribe name if this person has [3]. For example, <code>Muhammad Salman Amin</code>, his own name is Muhammad, his father's name is Salman, and his grandfather's name is Amin.</p>
+</li>
+<li>
+<p>In East Asia (for example in China, Japan and Korea), the order of the name follows eastern order, which put family name at first and given name at last. For example, if a Chinese person's given name is Heping and family name is Liu, this person will be called as <code>Liu Heping</code> in China. The middle name does not exist in Chinese names. His name will be switched as <code>Heping Liu</code> in western order when he lives in United States.</p>
+</li>
+<li>
+<p>In Spanish culture, a typical Spanish (Latin / Hispanic) name consists of four parts: first name, second first name, father's first surname, and mother's first surname [4]. The "middle" names are not middle names as we know them in English-speaking cultures [5] and there are two surnames in a full name. For example, <code>Raul Martinez Garcia</code> is married to <code>Alicia Fernandez Ochoa</code> and have a son who they decide to name Jose Roberto, then the boy's full name is <code>Jose Roberto Martinez Fernandez</code>. The first surname is primary, and the second sub-ordinate -- exactly the reverse of the middle and last names of non-Spanish speaking cultures (non-Hispanics). To a Hispanic, therefore, "Ornelas, Miguel Ledesma," would denote Miguel Ornelas Ledesma rather than, as a non-Hispanic would expect, Miguel Ledesma Ornelas.</p>
+</li>
+</ul>
+<h4 id="instructions">Instructions </h4>
+<p>Make sure you understand <strong>both</strong> brute force and Horspool's algorithms to find a pattern in a string before working on this lab. The pseudocode of Horspool's algorithm can be found in this handout <a href="../../handouts/brute-force/string_matching.pdf">String_Matching.pdf</a>.</p>
+<p><em>Optional Task (10 points):</em> The complexity of Horspool's algorithms is O(n+m), where n and m are the sizes of string and pattern. There is a O(n+m) algorithm named KMP. You could earn 10 additional points by implement KMP for this lab. For more information about KMP, please visit <a href="https://cp-algorithms.com/string/prefix-function.html">here</a> or <a href="https://www.geeksforgeeks.org/dsa/kmp-algorithm-for-pattern-searching/">here</a>.</p>
+<p>In this lab, you will need to search a group of names in a matrix of <code>word search puzzle</code> below using both brute force and Horspool's algorithms. For example, name <code>Mark</code> is on position (16, 13), (17,14), (18,15), (19,16).</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>                                         1 2 3 4 5 6 7 8 9 1 1 1 1 1 1 1 1 1 1 2
+                                                           0 1 2 3 4 5 6 7 8 9 0
+                                        ________________________________________
+                                       |                                         |
+                                    1  | X K R J Z G D K C K R Q A N P K A I Y C |
+                                    2  | L D Z C B O U I G H N Q V N K X A D I Q |
+                                    3  | B H R P X A K S F G I M S E P C Z Y T G |
+                                    4  | D A M X P C Y M A V A J K D Z X F C I N |
+                                    5  | P R J A K L W E D S J Z F O L F U Q R G |
+                                    6  | M U C C N Y T L S X M P P O P Z V X B B |
+                                    7  | C N F R M U H B H N U E O O T Y Q O P E |
+                                    8  | S K Z L B W E L H T H U S U G Q C Q J D |
+                                    9  | F D F Z G X X L D X A I H G N A A O H A |
+                                    10 | Y P V Q A R V S V M M O F G J X R V Z S |
+                                    11 | Z R L J B B J L Z L M T J K J C Y D S M |
+                                    12 | A C W K S L D G K C A O I H T W O J E P |
+                                    13 | N I T C C W O U T T D E U F R H K R M I |
+                                    14 | D L W A M G K I L I P D Z A T A V T Q M |
+                                    15 | R O B S W V C V O L A R F F R J J W O E |
+                                    16 | E P G T H C Q R H Q A N M A U F R C B T |
+                                    17 | S E N I D U P D W K E T Y A Y J J U E Q |
+                                    18 | W Z P L H L A H N B Z H B I R D H J K Z |
+                                    19 | V V G L X P S N Q V W D X U S K B Z N R |
+                                    20 | X D W O K M F G G W X P H G I K H L N X |
+                                       |_________________________________________|
+</code></pre><p>You can use a name as <strong>pattern</strong> and a horizontal, vertical, or diagonal string of the matrix as <strong>text</strong> to search the pattern in the text. For example, given a matrix below,</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>                                                  A B C
+                                                  D E F
+                                                  G H I
+</code></pre><p>you will <strong>only</strong> need to search a pattern in these strings:</p>
+<ul>
+<li>horizontal string from left to right: ABC, DEF, GHI</li>
+<li>vertical string from top to bottom: ADG, BEH, CFI</li>
+<li>diagonal string from top left to bottom right: G, DH, AEI, BF, C</li>
+<li>diagonal string from top right to bottom left, A, BD, CEG, FH, I</li>
+</ul>
+<p>A feasible way to organize your code is as following:</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>for pattern in self.names:
+    for text in row/column/diagonal:
+        if self.Name_Algorithm == "BruteForce":
+             self.match_BruteForce(pattern, text)
+        elif ....
+</code></pre><h4 id="tasks">Tasks </h4>
+<ol>
+<li>
+<p>A Mexican person's given names are Andres Manuel. The length of his father's surname is 5 and the length of his mother's surname is 8. Both two names are in a list <a href="./lab5/data/names/Mexican.txt">Mexican.txt</a> [7] and in the word search puzzle. What is this person's full name?</p>
+</li>
+<li>
+<p>An Arabic person's own name is Harun. The length of his father's name is 7 and the length of his grandfather's name is 8. Both two names are in a list <a href="./lab5/data/names/Arabic.txt">Arabic.txt</a> [8] and in the word search puzzle. What is this person's full name?</p>
+</li>
+<li>
+<p>A Chinese person's given name is Tianyi. The length of his family name is 5, which is in a list <a href="./lab5/data/names/Chinese.txt">Chinese.txt</a> [6] and in the word search puzzle. What is his name in eastern order?</p>
+</li>
+</ol>
+<p>Please answer these three questions using BOTH brute force and Horspool's algorithms and write all names in result.txt.</p>
+<h4 id="python">Python </h4>
+<p>You are not allowed to use <code>in</code> operation in a way like <code>pattern in text</code>. You can use <code>for item in list</code> or <code>for key in dict</code>. Since you are learning brute force, you have to manually implement the brute force and Horspool algorithms using for loops and numpy.</p>
+<p><strong>args</strong></p>
+<p>You will need to run your code either using the configuration or running the following commands in terminal:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>python name_search<span class="token punctuation">.</span>py <span class="token operator">-</span>algorithm NameOfAlgorithm <span class="token operator">-</span>name NameOfCulture <span class="token operator">-</span>length LengthOfName
+</code></pre><p>For example, you can run this command to find a Mexican name with 5 letters using brute force algorithm:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>python name_search<span class="token punctuation">.</span>py <span class="token operator">-</span>algorithm BruteForce <span class="token operator">-</span>name Mexican <span class="token operator">-</span>length <span class="token number">5</span>
+</code></pre><p>You can use above command to run your code case by case or you can type <code>python run.py</code> to run all cases at once.</p>
+<p><strong>numpy</strong></p>
+<p>Numpy (<a href="http://www.numpy.org/">http://www.numpy.org/</a>) is a fundamental package for scientific computing with Python. In this lab, we will use numpy array instead of list.</p>
+<p>Here are some basic usage of numpy. For more information, please visit this page (<a href="http://cs231n.github.io/python-numpy-tutorial/#numpy">http://cs231n.github.io/python-numpy-tutorial/#numpy</a>).</p>
+<p>By using the numpy package, you can <strong>easily retrieve one row/column/diagonal line from a matrix</strong>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># create a numpy array</span>
+matrix <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">"A"</span><span class="token punctuation">,</span><span class="token string">"B"</span><span class="token punctuation">,</span><span class="token string">"C"</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">"D"</span><span class="token punctuation">,</span><span class="token string">"E"</span><span class="token punctuation">,</span><span class="token string">"F"</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">"G"</span><span class="token punctuation">,</span><span class="token string">"H"</span><span class="token punctuation">,</span><span class="token string">"I"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>
+array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+       <span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token string">'F'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+       <span class="token punctuation">[</span><span class="token string">'G'</span><span class="token punctuation">,</span> <span class="token string">'H'</span><span class="token punctuation">,</span> <span class="token string">'I'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'&lt;U1'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># return the shape (row, column) of a numpy array</span>
+nRows<span class="token punctuation">,</span> cColumns <span class="token operator">=</span> matrix<span class="token punctuation">.</span>shape
+
+<span class="token comment"># access an element of numpy array</span>
+letter <span class="token operator">=</span> matrix<span class="token punctuation">[</span>row<span class="token punctuation">,</span> column<span class="token punctuation">]</span>
+
+<span class="token comment"># return all letters on row r as a list</span>
+row <span class="token operator">=</span> matrix<span class="token punctuation">[</span>r<span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+<span class="token comment"># return all letters on column c as a list</span>
+column <span class="token operator">=</span> matrix<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> c<span class="token punctuation">]</span>
+
+<span class="token comment"># return the diagonals </span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> matrix<span class="token punctuation">.</span>diagonal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token string">'I'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'&lt;U1'</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> matrix<span class="token punctuation">.</span>diagonal<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'F'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'&lt;U1'</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> matrix<span class="token punctuation">.</span>diagonal<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span>
+array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'G'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'&lt;U1'</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> matrix<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>diagonal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token string">'G'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">'&lt;U1'</span><span class="token punctuation">)</span>
+</code></pre><p><strong>debug</strong></p>
+<p>Use this argument in the json file to debug your code and modify it for different cases: <code>"args": ["-algorithm", "BruteForce", "-name", "Mexican", "-length", "5"]</code></p>
+<h4 id="hint">Hint </h4>
+<ol>
+<li>
+<p>All letters in the matrix and names are capital letters. <code>ord()</code> is a function to return the int value of a letter in <a href="http://www.asciitable.com/">ASCII table</a>. For example, <code>ord("A")</code> is 65 and <code>ord("P")</code> is 80. You can use <code>ord()</code> to convert a letter to a number when setting up the shift table in Horspool's algorithm.  For example, you can initialize a list <code>table</code> with length 26. <code>table[ord("A")-65]</code> is the shift size for letter A.<br>
+<br></p>
+<p>You also can use a dictionary to record the table using the letter as key and the best shifting size as value.<br>
+<br></p>
+</li>
+<li>
+<p>If you do not use the numpy package to retrieve the row/column/diagonal lines from the matrix (<strong>not recommended unless you want to earn extra points</strong>), you can manually write the code on your own :</p>
+</li>
+</ol>
+<ul>
+<li>If the current position [row, column] in the matrix is [r,c], the next position on the bottom right direction is [r+1, c+1] and the next position on the bottom left direction is [r+1, c-1].</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>                                          r-1, c-1         r-1, c+1
+                                                     r,c
+                                          r+1, c-1         r+1, c+1  
+</code></pre><ul>
+<li>For a matrix with m rows and n columns, there are m+n-1 diagonals from top left to bottom right and m+n-1 diagonals from top right to bottom left as well.</li>
+</ul>
+<h4 id="extra-points">Extra Points </h4>
+<p>You will receive at most 5 points if you do not use library functions like diagonal() from numpy in this lab.</p>
+<h4 id="what-to-submit">What to Submit </h4>
+<p>You need to submit these files to the dropbox on Canvas:</p>
+<ul>
+<li>name_search.py</li>
+<li>result.txt. (You must save names in correct formats based on different name conventions in different cultures in provided result.txt. You should not just save the output of your code in your own result.txt.)</li>
+</ul>
+<p>Please DO NOT change the names of files you downloaded.</p>
+<h4 id="reference">Reference </h4>
+<ul>
+<li>[1] <a href="https://en.wikipedia.org/wiki/Personal_name">https://en.wikipedia.org/wiki/Personal_name</a></li>
+<li>[2] <a href="https://en.wikipedia.org/wiki/Arabic_name">https://en.wikipedia.org/wiki/Arabic_name</a></li>
+<li>[3] <a href="https://www.quora.com/How-do-Arabic-names-work">https://www.quora.com/How-do-Arabic-names-work</a></li>
+<li>[4] <a href="http://lrc.salemstate.edu/hispanics/other/Naming_Conventions_of_Spanish-Speaking_Cultures.htm">http://lrc.salemstate.edu/hispanics/other/Naming_Conventions_of_Spanish-Speaking_Cultures.htm</a></li>
+<li>[5] <a href="https://www.quora.com/How-do-middle-names-and-last-names-work-in-Mexico-culture-in-Spanish">https://www.quora.com/How-do-middle-names-and-last-names-work-in-Mexico-culture-in-Spanish</a></li>
+<li>[6] <a href="https://www.jiawen.net/Chinesenamestext.txt">https://www.jiawen.net/Chinesenamestext.txt</a></li>
+<li>[7] <a href="https://en.wikipedia.org/wiki/List_of_common_Spanish_surnames">https://en.wikipedia.org/wiki/List_of_common_Spanish_surnames</a></li>
+<li>[8] <a href="https://family.disney.com/baby-names/arabic-names/">https://family.disney.com/baby-names/arabic-names/</a></li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
