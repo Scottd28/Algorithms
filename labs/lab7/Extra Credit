@@ -1,0 +1,4 @@
+a = 4 number of recursion calls
+b = 2 you are dividing by half
+
+4 = 2^2 O(n^2)
