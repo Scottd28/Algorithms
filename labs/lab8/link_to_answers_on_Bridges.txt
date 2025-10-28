@@ -1,11 +1,12 @@
 
 Link to solution of tree1.txt:
-
+https://assignments.bridgesuncc.org/assignments/1/ScottR1
 
 Link to solution of tree2.txt:
-
+https://assignments.bridgesuncc.org/assignments/2/ScottR1
 
 Link to solution of tree3.txt:
-
+https://assignments.bridgesuncc.org/assignments/3/ScottR1
 
 Link to solution of tree4.txt:
+https://assignments.bridgesuncc.org/assignments/4/ScottR1

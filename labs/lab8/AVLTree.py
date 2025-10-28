@@ -50,20 +50,24 @@ class AVLTree():
         if balance > 1:
             if node.key < root.left.key:
                 # right rotation
-                self.right_rotation(root)
+                root = self.right_rotation(root)
             else:
                 # left-right rotation
-                self.left_rotation(root)
-                self.right_rotation(root)
+                root.left = self.left_rotation(root.left)
+                root = self.right_rotation(root)
         elif balance < -1:
             if node.key > root.right.key:
                 # left rotation
-                self.left_rotation(root)
+                root = self.left_rotation(root)
             else:
                 # right-left rotation
-                self.right_rotation(root)
-                self.left_rotation(root)
-    # recursively return root of current subtree
+                root.right = self.right_rotation(root.right)
+                root = self.left_rotation(root)
+
+        # recursively return root of current subtree
+        return root
+
+        # recursively return root of current subtree
 
         return root
 
