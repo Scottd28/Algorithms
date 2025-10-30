@@ -48,19 +48,38 @@ class EightPuzzle():
         successors = []
         # your code goes here:
         current_state = state.copy()
-        row, col = np.where(current_state == 0)
-         #row+1 = position after
-         #row-1 = position before
+        zeroRow, zeroCol = np.where(current_state == 0)
+        pos_after_row = zeroRow+1
+        pos_before_row = zeroRow-1
+        pos_after_column = zeroCol+1
+        pos_before_column = zeroCol-1
+        available_pos = [0,1,2]
+        if pos_after_row in available_pos:
+            original_position = current_state[zeroRow][zeroCol]
+            current_state[zeroRow][zeroCol] = current_state[pos_after_row][zeroCol]
+            current_state[pos_after_row][zeroCol] = original_position
+            successors.append(current_state)
+            current_state = state.copy()
 
+        if pos_before_row in available_pos:
+            original_position = current_state[zeroRow][zeroCol]
+            current_state[zeroRow][zeroCol] = current_state[pos_before_row][zeroCol]
+            current_state[pos_before_row][zeroCol] = original_position
+            successors.append(current_state)
+            current_state = state.copy()
+        if pos_after_column in available_pos:
+            original_position = current_state[zeroRow][zeroCol]
+            current_state[zeroRow][zeroCol] = current_state[zeroRow][pos_after_column]
+            current_state[zeroRow][pos_after_column] = original_position
+            successors.append(current_state)
+            current_state = state.copy()
 
+        if pos_before_column in available_pos:
+            original_position = current_state[zeroRow][zeroCol]
+            current_state[zeroRow][zeroCol] = current_state[zeroRow][pos_before_column]
+            current_state[zeroRow][pos_before_column] = original_position
+            successors.append(current_state)
 
-
-
-
-
-
-
-        
         return successors
     
     # draw 
