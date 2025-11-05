@@ -26,10 +26,7 @@ class EightPuzzle():
 
     # goal test(ie. does our current state match the end goal)
     def goal_test(self, current_state):
-        if current_state == self.goal_state:
-            return True
-        else:
-            return False
+        return np.array_equal(current_state, self.goal_state)
 
 
 
@@ -49,6 +46,7 @@ class EightPuzzle():
         # your code goes here:
         current_state = state.copy()
         zeroRow, zeroCol = np.where(current_state == 0)
+        zeroRow, zeroCol = int(zeroRow[0]), int(zeroCol[0])
         pos_after_row = zeroRow+1
         pos_before_row = zeroRow-1
         pos_after_column = zeroCol+1
@@ -81,8 +79,10 @@ class EightPuzzle():
             successors.append(current_state)
 
         return successors
-    
-    # draw 
+
+
+
+    # draw
     def draw(self, node):
         path=[]
         while node.parent:
@@ -93,22 +93,43 @@ class EightPuzzle():
 
     # solve it
     def solve(self):
-        fringe = [] # node
-        state = self.start_state.copy() # use copy() to copy value instead of reference 
+        if self.goal_test(self.start_state): return
+        fringe = []  # node
+        state = self.start_state.copy()  # use copy() to copy value instead of reference
         node = Node(state, 0, None)
         self.visited.append(state)
-        if self.algorithm == 'Depth-Limited-DFS': 
-            pass
-            # your code goes here:
+        depth = 15
 
-        elif self.algorithm == 'BFS': 
-            pass
-            # your code goes here:
+        fringe.append(node)
 
         while fringe:
-            pass 
-            # your code goes here:
-            # if one solution is found, call self.draw(current_node) to show and save the animation.      
+            if self.algorithm == 'Depth-Limited-DFS':
+                current_node = fringe.pop()
+                if current_node.cost_from_start >= depth:
+                    continue
+            elif self.algorithm == 'BFS':
+                current_node = fringe.pop(0)
+
+            moves = self.get_successors(current_node.state)
+            for move in moves:
+                visit = False
+                for visited in self.visited:
+                    if np.array_equal(move, visited):
+                        visit = True
+                        break
+                if not visit:
+                    if self.goal_test(move):
+                        next_cost = current_node.cost_from_start + self.get_cost(current_node.state, move)
+                        next_node = Node(move, next_cost, current_node)
+                        self.draw(next_node)
+                        return
+                    next_cost = current_node.cost_from_start + self.get_cost(current_node.state, move)
+                    next_node = Node(move, next_cost, current_node)
+                    self.visited.append(move)
+                    if self.algorithm == 'Depth-Limited-DFS':
+                        fringe.insert(0, next_node)
+                    elif self.algorithm == 'BFS':
+                        fringe.append(next_node)
             
     
 if __name__ == "__main__":
