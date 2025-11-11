@@ -1,5 +1,6 @@
 import numpy as np
 from heapq import heappush, heappop
+
 from animation import draw
 import argparse
 
@@ -82,30 +83,39 @@ class EightPuzzle():
         # your code goes here:
         if self.method == "Hamming":
             current_state = state.copy()
-            sum = 0
 
-            for i in range(len(current_state)):
-                if current_state[i] != self.goal_state[i]:
-                    sum+=1
-        elif self.method == "Manhattan":
-            current_state = state.copy()
-
+            notInPosition = 0
             for r in range(len(current_state)):
                 for c in range(len(current_state[r])):
-                    sum = 0
-                    if current_state[r][c] != self.goal_state[r][c]:
-                        rowCurrent, columnCurrent = np.where(current_state[r][c])[0][1], np.where(current_state[r][c])[1][0]
-                        rowGoal, columnGoal = np.where(current_state[r][c])[0][1], np.where(current_state[r][c])[1][0]
-                        h = abs(rowGoal - rowCurrent)
-                        w = abs(columnGoal - columnCurrent)
-                        sum += h + w
-        return sum
+                    if current_state[r][c] != self.goal_state[r][c] and current_state[r][c] != 0:
+                        notInPosition += 1
+            return notInPosition
+
+        elif self.method == "Manhattan":
+            current_state = state.copy()
+            distance = 0
+            for r in range(len(current_state)):
+                for c in range(len(current_state[r])):
+                    if current_state[r][c] != self.goal_state[r][c] and current_state[r][c] != 0: #if its a number we need to add to sum
+                        location_in_goal = np.where(self.goal_state == current_state[r][c]) #get an array of the row and col in goal
+                        goalrow, goalcol = location_in_goal[0][0], location_in_goal[1][0]
+                        currentrow, currentcol = r, c
+                        h = abs(goalrow - currentrow)
+                        w = abs(goalcol - currentcol)
+                        distance += h + w
+            return distance
+
+
+
 
     # priority of node
     def priority(self, node):
         # use if-else here to take care of different type of algorithms
         # your code goes here:
-        pass
+        if self.algorithm == "Greedy":
+            return  self.heuristics(node.state)
+        elif self.algorithm == "AStar":
+            return node.cost_from_start + self.heuristics(node.state)
 
     # draw
     def draw(self, node):
@@ -131,8 +141,10 @@ class EightPuzzle():
         self.visited.append(state)
         depth = 15
 
-
-        fringe.append(node)
+        if self.algorithm in ["AStar", "Greedy"]:
+            heappush(fringe, (self.priority(node), node))
+        else:
+            fringe.append(node)
 
         while fringe:
             if self.algorithm == 'Depth-Limited-DFS':
@@ -141,11 +153,8 @@ class EightPuzzle():
                     continue
             elif self.algorithm == 'BFS':
                 current_node = fringe.pop(0)
-            elif self.algorithm == 'AStar':
-            elif self.algorithm == 'Greedy':
-
-
-
+            elif self.algorithm in ["AStar", "Greedy"]:
+                priority, current_node = heappop(fringe)
 
 
 
@@ -169,6 +178,8 @@ class EightPuzzle():
                         fringe.insert(0, next_node)
                     elif self.algorithm == 'BFS':
                         fringe.append(next_node)
+                    elif self.algorithm == "AStar" or self.algorithm == "Greedy":
+                        heappush(fringe, (self.priority(next_node) ,next_node))
         pass
 
 
