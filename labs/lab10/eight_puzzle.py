@@ -140,9 +140,11 @@ class EightPuzzle():
         node = Node(state, 0, None)
         self.visited.append(state)
         depth = 15
+        count = 0
 
         if self.algorithm in ["AStar", "Greedy"]:
-            heappush(fringe, (self.priority(node), node))
+            count +=1
+            heappush(fringe, (self.priority(node),count, node))
         else:
             fringe.append(node)
 
@@ -154,7 +156,7 @@ class EightPuzzle():
             elif self.algorithm == 'BFS':
                 current_node = fringe.pop(0)
             elif self.algorithm in ["AStar", "Greedy"]:
-                priority, current_node = heappop(fringe)
+                priority, _, current_node = heappop(fringe)
 
 
 
@@ -179,7 +181,8 @@ class EightPuzzle():
                     elif self.algorithm == 'BFS':
                         fringe.append(next_node)
                     elif self.algorithm == "AStar" or self.algorithm == "Greedy":
-                        heappush(fringe, (self.priority(next_node) ,next_node))
+                        count+=1
+                        heappush(fringe, (self.priority(next_node),count ,next_node))
         pass
 
 
