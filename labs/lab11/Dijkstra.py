@@ -45,10 +45,21 @@ class Dijkstra():
         for vertex in self.vertices:
             self.g.add_vertex(vertex, str(vertex))
             self.g.get_visualizer(vertex).color = "red"
-        
+
         for vertex in self.adjacency:
             for edge in self.adjacency[vertex]:
                 self.g.add_edge(vertex, edge[0], edge[1])
+
+
+
+
+
+
+
+
+
+
+
 
 
     # solve it using Dijkstra algorithm
@@ -66,15 +77,17 @@ class Dijkstra():
                 return True
             do something else
        '''
-
+       minDistances = {}
+       for vertex in self.vertices:
+           minDistances[vertex] = float('inf')
        visitedVertices = []
        pq = []
-       # for vertex in self.vertices:
-       #      heapq.heappush(pq, (0, vertex))
-       heapq.heappush(pq, (0, self.startingVertex))
-
+       heapq.heappush(pq, (0, self.startingVertex, None))
+       minDistances[self.startingVertex] = 0
        while pq:
-           dist, vertex = heapq.heappop(pq) #remove a vertex from the heap
+           dist, vertex, directparent = heapq.heappop(pq) #remove a vertex from the heap
+           if(dist > minDistances[vertex]):
+               continue   #TODO: REMEBER WHAT CONTINUE DOES
            print(f"adjacency list of [{vertex}]: {self.adjacency.get(vertex, [])}\n")
            if vertex not in visitedVertices:
                #update priority and add to visited vertices
@@ -82,36 +95,49 @@ class Dijkstra():
                adjacencyListOfVertex = self.adjacency.get(vertex, [])
                for edge in adjacencyListOfVertex:
                    print(f"{edge[0]} -> {edge[1]}")
-                   heapq.heappush(pq, (edge[1], edge[0]))
-           elif vertex == self.goalVertex:
-               return True
+                   child = edge[0]
+                   weight = edge[1]
+
+                   if minDistances[child] > minDistances[vertex] + weight:
+                       self.parent[child] = vertex
+                       minDistances[child] = minDistances[vertex]+weight
+                       heapq.heappush(pq, (minDistances[child], child, vertex))
+
+                   print("dist : ", weight + dist)
+                   # heapq.heappush(pq, ( weight + dist, child, vertex))
+           if vertex == self.goalVertex:
+                print("minDistance DICTIONARY: " , minDistances)
+                return True
 
 
 
 
 
 
-
-
-
-
-
-    # retrieve the path from start to the goal 
+    # retrieve the path from start to the goal
     def find_path(self):
-        self.path = []
+        path= [self.goalVertex]
         # your code goes here:
-        heapq.heappush(self.path, self.startingVertex)
+        while self.parent[path[0]] is not self.startingVertex:
+            print(self.parent[path[0]])
+            path.insert (0, self.parent[path[0]])
+
+        path.insert(0, self.startingVertex)
+        return path
 
 
 
 
 
-    
+
+
     # draw the path as red
     def draw_path(self):
-        print(self.path)
-        for i in range(len(self.path)-1):
-            self.g.get_link_visualizer(self.path[i], self.path[i+1]).color = "red"
+
+        path = self.find_path()
+        print(path)
+        for i in range(len(path)-1):
+            self.g.get_link_visualizer(path[i], path[i+1]).color = "red"
 
     # return the Bridges object
     def get_graph(self):
