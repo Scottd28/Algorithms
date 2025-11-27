@@ -1,5 +1,9 @@
 from copy import deepcopy as copy
 import argparse
+from turtledemo.chaos import jumpto
+
+from astropy.cosmology import available
+
 from animation import draw
 
 class Node():
@@ -29,46 +33,148 @@ class peg:
         else:
             print("No solution were found!")
 
-
     def success(self):
-        # your code goes here:
-        pass 
+        pegs = 0
+        for row in self.board:
+            for col in row:
+                if col == 1:
+                    pegs += 1
 
+        if self.rule == 0:
+            return pegs == 1
+        elif self.rule == 1:
+            return pegs == 1 and self.board[self.start_row][self.start_col] == 1
+        else:
+            return False
 
-
-        
     def solve(self):
-        # your code goes here:
-        ''''
-        if board is solution:
-            return True
-
-        for one available jump:
-
-            process
-            board and path
-
-            if solve():
-                return True
-
-            backtrack
-            board and path
-
-        return False
-        '''
+        # Base case
         if self.success():
             return True
-        #calculate the available jumps
-        for i in range(len(self.board)): # row
+
+        # one available move
+        for i in range(len(self.board)):
             for j in range(len(self.board[i])):
+                # Found a peg
+                if self.board[i][j] == 1:
+
+                    # Jump right (col 110)
+                    if j + 2 < len(self.board[i]):  # check if its within bounds
+                        if self.board[i][j + 1] == 1 and self.board[i][j + 2] == 0:
+                            self.board[i][j] = 0  # jumpfrom
+                            self.board[i][j + 1] = 0  # jump over
+                            self.board[i][j + 2] = 1  # jumpto
+
+                            # add to path
+                            self.path.append(Node(copy(self.board), (i, j), (i, j + 1), (i, j + 2)))
+
+                            if self.solve():
+                                return True
+
+                            # backtracking, return the board to original state
+                            self.board[i][j] = 1
+                            self.board[i][j + 1] = 1
+                            self.board[i][j + 2] = 0
+                            self.path.pop()
+
+                    # Jump left (col 011)
+                    if j - 2 >= 0:  # check if its within bounds
+                        if self.board[i][j - 1] == 1 and self.board[i][j - 2] == 0:
+                            self.board[i][j] = 0  # jumpfrom
+                            self.board[i][j - 1] = 0  # jump over
+                            self.board[i][j - 2] = 1  # jumpto
+
+                            # add to path
+                            self.path.append(Node(copy(self.board), (i, j), (i, j - 1), (i, j - 2)))
+
+                            if self.solve():
+                                return True
+
+                            # backtracking, return the board to original state
+                            self.board[i][j] = 1
+                            self.board[i][j - 1] = 1
+                            self.board[i][j - 2] = 0
+                            self.path.pop()
+
+                    # Jump down-right diagonal
+                    if i + 2 < len(self.board) and j + 2 < len(self.board[i + 2]):  # check if its within bounds
+                        if self.board[i + 1][j + 1] == 1 and self.board[i + 2][j + 2] == 0:
+                            self.board[i][j] = 0  # jumpfrom
+                            self.board[i + 1][j + 1] = 0  # jump over
+                            self.board[i + 2][j + 2] = 1  # jumpto
+
+                            # add to path
+                            self.path.append(Node(copy(self.board), (i, j), (i + 1, j + 1), (i + 2, j + 2)))
+
+                            if self.solve():
+                                return True
+
+                            # backtracking, return the board to original state
+                            self.board[i][j] = 1
+                            self.board[i + 1][j + 1] = 1
+                            self.board[i + 2][j + 2] = 0
+                            self.path.pop()
+
+                    # Jump up-left diagonal
+                    if i - 2 >= 0 and j - 2 >= 0:  # check if its within bounds
+                        if self.board[i - 1][j - 1] == 1 and self.board[i - 2][j - 2] == 0:
+                            self.board[i][j] = 0  # jumpfrom
+                            self.board[i - 1][j - 1] = 0  # jump over
+                            self.board[i - 2][j - 2] = 1  # jumpto
+
+                            # add to path
+                            self.path.append(Node(copy(self.board), (i, j), (i - 1, j - 1), (i - 2, j - 2)))
+
+                            if self.solve():
+                                return True
+
+                            # backtracking, return the board to original state
+                            self.board[i][j] = 1
+                            self.board[i - 1][j - 1] = 1
+                            self.board[i - 2][j - 2] = 0
+                            self.path.pop()
+
+                    # Jump down (vertical)
+                    if i + 2 < len(self.board) and j < len(self.board[i + 2]):  # check if its within bounds
+                        if self.board[i + 1][j] == 1 and self.board[i + 2][j] == 0:
+                            self.board[i][j] = 0  # jumpfrom
+                            self.board[i + 1][j] = 0  # jump over
+                            self.board[i + 2][j] = 1  # jumpto
+
+                            # add to path
+                            self.path.append(Node(copy(self.board), (i, j), (i + 1, j), (i + 2, j)))
+
+                            if self.solve():
+                                return True
+
+                            # backtracking, return the board to original state
+                            self.board[i][j] = 1
+                            self.board[i + 1][j] = 1
+                            self.board[i + 2][j] = 0
+                            self.path.pop()
+
+                    # Jump up (vertical)
+                    if i - 2 >= 0 and j < len(self.board[i - 2]):  # check if its within bounds
+                        if self.board[i - 1][j] == 1 and self.board[i - 2][j] == 0:
+                            self.board[i][j] = 0  # jumpfrom
+                            self.board[i - 1][j] = 0  # jump over
+                            self.board[i - 2][j] = 1  # jumpto
+
+                            # add to path
+                            self.path.append(Node(copy(self.board), (i, j), (i - 1, j), (i - 2, j)))
+
+                            if self.solve():
+                                return True
+
+                            # backtracking, return the board to original state
+                            self.board[i][j] = 1
+                            self.board[i - 1][j] = 1
+                            self.board[i - 2][j] = 0
+                            self.path.pop()
+
+        return False
 
 
-
-
-
-
-
-        
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='peg game')
@@ -86,9 +192,8 @@ if __name__ == '__main__':
         print("column must be less or equal than row")
         exit()
 
-    # Example: 
+    # Example:
     # python peg.py -hole 0 0 -rule 0
     game = peg(start_row, start_col, args.rule)
     game.solve()
     game.draw()
-    
