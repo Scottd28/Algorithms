@@ -8,8 +8,10 @@ from bridges.data_src_dependent import *
 from bridges.dl_element import *
 from bridges.us_map import *
 from nbformat.sign import algorithms
+from networkx.classes import neighbors
 
-
+city_graph = GraphAdjList()
+path = []
 #how to use the USCities Dataset
 def main(algorithm_type):
 
@@ -25,7 +27,7 @@ def main(algorithm_type):
     all_cities = get_us_cities_data()
     major_cities = [ c for c in all_cities if c.population > 110400]
     print(len(major_cities))
-    city_graph = GraphAdjList()
+
 
     #vertices
     for city in major_cities:
@@ -57,9 +59,11 @@ def main(algorithm_type):
 
     #figure what algorithm do you need to do
     if algorithm_type.lower() == "prims":
-        prims(major_cities)  # or pass city_graph if you want
+        #prims()  TODO:FIX
+        exit()
     elif algorithm_type.lower() == "kruskals":
-        kruskals(city_graph)
+        #kruskals()
+        exit()
     else:
         print("Invalid method. Choose 'Prims' or 'Kruskals'.")
 
@@ -89,8 +93,21 @@ def prims(start):
     Add v to the MST.
     Goto step 2 until all vertices in G are in the MST.
     '''
+    visited = set() #list of all the city objects visited
+    visited.add(start)
+    while len(visited) < len(city_graph.vertices):
+        allEdges = {}
+        for v in visited:
+            neighbors = v.get_adjacency_list()
+            for n in neighbors:
+                if n not in visited:
+                    edge = city_graph.get_edge(v,n)
+                    allEdges[n] = edge.get_weight()
+            closest = min(allEdges, key=allEdges.get)
+            visited.add(closest)
+            path.append(closest)
 
-    return None
+    return path
 
 def kruskals():
     #COMPLETE
