@@ -1,7 +1,7 @@
 import argparse
 
 from bridges.bridges import *
-import math
+from math import radians, cos, sin, asin, sqrt
 
 from bridges.data_src_dependent import *
 import random
@@ -36,27 +36,18 @@ def main(algorithm_type):
         node_in_map.set_location(city.lon, city.lat)
         node_in_map.size = 5
 
-    # create all edges
-    for c1 in range(len(major_cities)):
-        city1 = major_cities[c1]
-        key1 = city1.city + ","  + city1.state
-
-        for c2 in range(len(major_cities)):
-            if c1 == c2: continue # dont connect the same cities
-            city2 = major_cities[c2]
-            distance = haversine(city1.lat, city1.lon, city2.lat, city2.lon) #calculate distance between cities
-            key2 = city2.city + "," + city2.state
-            city_graph.add_edge(key1, key2, distance)
-            # city_graph.get_link_visualizer(key1, key2).thickness = 1.0  TODO: visualize only the mst
-
-
-
 
     #figure what algorithm do you need to do
     if algorithm_type.lower() == "prims":
         path = prims()
+        print(path)
+        for s, e, w in path:
+            city_graph.add_edge(s, e, w)
     elif algorithm_type.lower() == "kruskals":
         path = kruskals()
+        print(path)
+        for s, e, w in path:
+            city_graph.add_edge(s, e, w)
     else:
         print("Invalid method. Choose 'Prims' or 'Kruskals'.")
 
@@ -68,15 +59,22 @@ def main(algorithm_type):
 
 
 #calculate distances between cities
-def haversine(lat1, lon1, lat2, lon2):
-    radius = 6371 #radius around the earth in km
-    l1 = math.radians(lat1)
-    l2 = math.radians(lat2)
-    dlatitude = math.radians(lat2 - lat1)
-    dlongitude = math.radians(lon2 - lon1)
+#stack overflow code from Michael Dunn https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points
+def haversine(lon1, lat1, lon2, lat2):
+    """
+    Calculate the great circle distance in kilometers between two points
+    on the earth (specified in decimal degrees)
+    """
+    # convert decimal degrees to radians
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
 
-    a = math.sin(dlatitude / 2) ** 2 + math.cos(l1) * math.cos(l2) * math.sin(dlongitude / 2) ** 2
-    return 2 * radius * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    # haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a))
+    r = 6371 # Radius of earth in kilometers. Use 3956 for miles. Determines return value units.
+    return c * r
 
 def prims():
     '''
@@ -84,48 +82,102 @@ def prims():
     Choose the vertex v that is closest to the set of vertices already taken.
     Add v to the MST.
     Goto step 2 until all vertices in G are in the MST.
+    :return the MST
     '''
+    vertices = list(city_graph.vertices.keys())
+    start = random.choice(vertices)
+    visited = {start}
     mst = []
-    visited = set()
-    random_city = random.choice(list(city_graph.vertices.keys()))
-    visited.add(random_city)
-    while len(visited) < len(city_graph.vertices): #while we haven't visited all cities
-         edges = []
 
-         #add all possible edges we can pick from
-         for v in visited:
-            neighbor = city_graph.get_adjacency_list(v)
-            for n in neighbor:
-                 if n in visited: continue
-                 edge = city_graph.get_edge(v,n)
-                 edges.append((edge, n))
+    while len(visited) < len(vertices): #while we haven't visited all vertices
+        best_edge = None
+        best_dist = float("inf")
 
-         edges.sort(key=lambda e: e[0].weight)#pick the closest
-         edge, closest = edges.pop(0)
-         visited.add(closest)
-         mst.append(edge)
+        for c1 in visited:
+            for c2 in vertices: #all possible edges
+
+                if c2 in visited or c2 == c1:
+                    continue
+
+                #calculate data for the distance
+                city1 = city_graph.get_visualizer(c1)  # use visualizer instead or vetices
+                lat1, lon1 = city1.location_y, city1.location_x
+
+                city2 = city_graph.get_visualizer(c2)
+                lat2, lon2 = city2.location_y, city2.location_x
+
+                dist = haversine( lon1, lat1, lon2, lat2)
+
+                if dist < best_dist: #if we havent picked the smallest option yet
+                    best_dist = dist
+                    best_edge = (c1, c2, dist)
+
+        if best_edge is None:
+            print("No edge found")
+            break
+
+        mst.append(best_edge)
+        visited.add(best_edge[1])
+
     return mst
 
 
 def kruskals():
-    #The general strategy is to select edges in order of smallest weight
-    # and accept an edge if it does not form a cycle.
+    '''
+    The general strategy is to select edges in order of smallest weight
+    and accept an edge if it does not form a cycle.
+    returns: the MST
+    '''
     mst = []
-    edges = [] #collect all edges
-    for city1 in city_graph.vertices:
-        for city2 in city_graph.vertices:
-            if city1 > city2: #dont count duplicates
-                edges.append( city_graph.get_edge(city1, city2))
-    edges.sort(key=lambda e: e.weight) # sort based on the distance
+    edges = []
+    vertices = list(city_graph.vertices.keys())
 
-    while len(edges) > 0:
-        edge = edges.pop(0)
-        if dfsHasCycle(edge[0], edge[1]):  continue
+    # collect all edges
+    for i, c1 in enumerate(vertices): # keep track of this position so you can skip it
+        for c2 in vertices[i+1:]:
+            city1 = city_graph.get_visualizer(c1)
+            city2 = city_graph.get_visualizer(c2)
+
+            #calculate distance
+            lat1, lon1 = city1.location_y, city1.location_x
+            lat2, lon2 = city2.location_y, city2.location_x
+            distance = haversine(lon1, lat1, lon2, lat2)
+
+            edges.append((c1, c2, distance))
+
+    edges.sort(key=lambda e: e[2]) #sort by distance
+
+    #bridges doesnt have an adj list
+    adj = {key: [] for key in vertices}
+
+    #CALCULATE IF IT HAS CYCLES, you have all edges now, just check if doing another edge would cause a cycle
+    def dfsHasCycle(v1, v2):
+        visited = set()
+
+        def dfs(current, target):
+            if current == target: #we've already reached the target, we dont have to again
+                return True
+
+            visited.add(current)
+            for neighbor in adj[current]:
+                if neighbor not in visited:
+                    return dfs(neighbor, target)
+
+            return False
+
+        return dfs(v1, v2)
+
+    # Build MST
+    for edge in edges:
+        city1, city2, dist = edge
+        if dfsHasCycle(city1, city2): #if it has a cycle go to the next smallest vertice
+            continue
         mst.append(edge)
+        adj[city1].append(city2)
+        adj[city2].append(city1)
+
     return mst
 
-def dfsHasCycle(v1, v2):
-    return None
 
 
 if __name__ == "__main__":
@@ -138,8 +190,6 @@ if __name__ == "__main__":
         type=str,
         help='Kruskals, Prims'
     )
-
-
     args = parser.parse_args()
     # python main.py -method prims
     main(args.algorithm_type)
