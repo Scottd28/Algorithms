@@ -7,20 +7,20 @@ quantities of coins for each of the m denominations.
 For example, n = 6 and coin denominations 1, 3, and 4.
  The answer is 2 because you can use two 3 to add up to 6.
 '''
-ways = {}
-def change_making(d, n):
-    global ways
-    if n in ways:
-        return ways[n]
-    else:
-        choices = []
-        for coin in d:
-            if n % coin == 0:
-                #find the best coin combo for n
-                print("here")
-                choices.append(n/coin)
 
-        return ways[n]
+def change_making(d, n):
+    n_of_coins = [float("inf")] * (n+1)
+    n_of_coins[0] = 0
+    for i in range(1, n+1):
+        for coin in d:
+            if coin <= i:
+                n_of_coins[i] = min(n_of_coins[i], n_of_coins[i-coin] + 1)
+    if n_of_coins[n] == float("inf"):
+        return -1
+    return n_of_coins[n]
+
+
+
 
 
 
