@@ -11,12 +11,15 @@ For example, n = 6 and coin denominations 1, 3, and 4.
 def change_making(d, n):
     n_of_coins = [float("inf")] * (n+1)
     n_of_coins[0] = 0
-    for i in range(1, n+1):
+
+    for i in range(1, n+1): #get the best coin comb
         for coin in d:
             if coin <= i:
                 n_of_coins[i] = min(n_of_coins[i], n_of_coins[i-coin] + 1)
+
     if n_of_coins[n] == float("inf"):
         return -1
+
     return n_of_coins[n]
 
 

@@ -4,34 +4,23 @@ def roll_dice(N,M):
     #Roll a fair six-sided dice N times.
     # The sum of the results is M.
 
-    dices= [float("inf")] * (N+1)
-    dices[0] = 0
-    for i in range(1, N + 1):
-        choices = []
-        for i in range(6):
-            if
+
+    dp = [[0] * (M + 1) for _ in range(N + 1)]
+    dp[0][0] = 1  # 1 way to reach sum 0 because we count nothing as a way
+
+    for n in range(1, N + 1): #dices
+        for t in range(1, M + 1): #target
+
+            total = 0
+
+            for face in range(1, 7):
+                if t - face >= 0:
+                    total += dp[n - 1][t - face]
+
+            dp[n][t] = total
 
 
-    # for i in range(1, n+1):
-    #     for coin in d:
-    #         if coin <= i:
-    #             n_of_coins[i] = min(n_of_coins[i], n_of_coins[i-coin] + 1)
-    if dices[N] == float("inf"):
-        return -1
-    return dices[N]
-
-
-
-
-
-
-
-
-
-
-
-    pass
-
+    return dp[N][M]
 
 
 

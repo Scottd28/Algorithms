@@ -3,7 +3,7 @@ There are n steps in a stair.
 You can either climb 1 or 2 steps each time.
 Find how many different ways you can climb to the top?
 '''
-ways = {0: 1, 1: 1, 2:2}
+ways = {0: 1, 1: 1, 2:2} # 0:1 because we count climbing 0 steps as a way
 def climb_stair(n):
     # Your code goes here:
     global ways
