@@ -86,38 +86,44 @@ def prims():
     '''
     vertices = list(city_graph.vertices.keys())
     start = random.choice(vertices)
+    print(start)
     visited = {start}
     mst = []
 
-    while len(visited) < len(vertices): #while we haven't visited all vertices
+    # Loop until all vertices are visited
+    while len(visited) < len(vertices):
         best_edge = None
         best_dist = float("inf")
 
+
         for c1 in visited:
-            for c2 in vertices: #all possible edges
 
-                if c2 in visited or c2 == c1:
-                    continue
+            # Look at all other nodes to find the closest unvisited one
+            for c2 in vertices:
+                if c2 in visited:
+                    continue  # Skip if both are already in the tree
 
-                #calculate data for the distance
-                city1 = city_graph.get_visualizer(c1)  # use visualizer instead or vetices
-                lat1, lon1 = city1.location_y, city1.location_x
 
+                city1 = city_graph.get_visualizer(c1)
                 city2 = city_graph.get_visualizer(c2)
+
+                # Calculate distance
+                lat1, lon1 = city1.location_y, city1.location_x
                 lat2, lon2 = city2.location_y, city2.location_x
 
-                dist = haversine( lon1, lat1, lon2, lat2)
+                dist = haversine(lon1, lat1, lon2, lat2)
 
-                if dist < best_dist: #if we havent picked the smallest option yet
+                if dist < best_dist:
                     best_dist = dist
+
                     best_edge = (c1, c2, dist)
 
-        if best_edge is None:
-            print("No edge found")
+        if best_edge:
+            mst.append(best_edge)
+            visited.add(best_edge[1])
+        else:
+            print("Could not connect remaining nodes.")
             break
-
-        mst.append(best_edge)
-        visited.add(best_edge[1])
 
     return mst
 
@@ -148,31 +154,39 @@ def kruskals():
     edges.sort(key=lambda e: e[2]) #sort by distance
 
     #bridges doesnt have an adj list
-    adj = {key: [] for key in vertices}
+    adj = {}
+    for v in vertices:
+        adj[v] = []
 
     #CALCULATE IF IT HAS CYCLES, you have all edges now, just check if doing another edge would cause a cycle
     def dfsHasCycle(v1, v2):
         visited = set()
 
         def dfs(current, target):
-            if current == target: #we've already reached the target, we dont have to again
+            if current == target:
                 return True
 
             visited.add(current)
+
             for neighbor in adj[current]:
                 if neighbor not in visited:
-                    return dfs(neighbor, target)
+                    if dfs(neighbor, target):
+                        return True
 
             return False
 
         return dfs(v1, v2)
 
-    # Build MST
-    for edge in edges:
+    # build MST
+    for edge in edges: #next smallest node
         city1, city2, dist = edge
+
         if dfsHasCycle(city1, city2): #if it has a cycle go to the next smallest vertice
             continue
+
         mst.append(edge)
+
+        #all the cities we've already reached go in the adjacency list
         adj[city1].append(city2)
         adj[city2].append(city1)
 
